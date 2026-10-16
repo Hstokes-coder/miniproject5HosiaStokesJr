@@ -19,14 +19,25 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
         </ul>
-        <!-- Register / Log In links will go here once authentication is built. -->
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          {% if g.user %}
+            <li class="nav-item">
+              <span class="navbar-text me-lg-3">Signed in as <strong>{{ g.user['username'] }}</strong></span>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}">Log Out</a></li>
+          {% else %}
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.register') }}">Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">Log In</a></li>
+          {% endif %}
+        </ul>
       </div>
     </div>
   </nav>
 
   <main class="container my-4 flex-grow-1">
-    {% for message in get_flashed_messages() %}
-      <div class="alert alert-info alert-dismissible fade show" role="alert">
+    {# Categories (success, danger, ...) pick the Bootstrap alert color. #}
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+      <div class="alert alert-{{ 'info' if category == 'message' else category }} alert-dismissible fade show" role="alert">
         {{ message }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>

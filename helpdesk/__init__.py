@@ -34,6 +34,10 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
+    # Register the authentication blueprint (register, login, logout).
+    from . import auth
+    app.register_blueprint(auth.bp)
+
     @app.route("/")
     def index():
         return render_template("index.html")
