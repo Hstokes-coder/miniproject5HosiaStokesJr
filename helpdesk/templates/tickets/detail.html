@@ -27,5 +27,36 @@
   </div>
 </div>
 
-<a href="{{ url_for('tickets.index') }}" class="btn btn-outline-secondary mt-3">&larr; Back to My Tickets</a>
+<div class="d-flex flex-wrap gap-2 mt-3">
+  <a href="{{ url_for('tickets.index') }}" class="btn btn-outline-secondary me-auto">&larr; Back to My Tickets</a>
+  <a href="{{ url_for('tickets.update', ticket_id=ticket['id']) }}" class="btn btn-primary">Edit</a>
+  {# This button doesn't delete anything; it only opens the modal below. #}
+  <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+    Delete
+  </button>
+</div>
+
+<!-- Bootstrap modal: confirms before the ticket is deleted. -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="deleteModalLabel">Delete Ticket #{{ ticket['id'] }}?</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-1">You're about to permanently delete:</p>
+        <p class="fw-semibold mb-0">{{ ticket['title'] }}</p>
+        <p class="text-danger small mt-3 mb-0">This can't be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        {# The real delete is a POST form, so it only happens when this is clicked. #}
+        <form method="post" action="{{ url_for('tickets.delete', ticket_id=ticket['id']) }}" class="m-0">
+          <button type="submit" class="btn btn-danger">Yes, delete it</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Ticket #{{ ticket['id'] }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <h1 class="h3 mb-4">Edit Ticket #{{ ticket['id'] }}</h1>
+    {# On first load show the saved values; after a failed POST show what was typed. #}
+    {% set form = request.form if request.method == 'POST' else ticket %}
+    <form method="post" novalidate class="card card-body shadow-sm">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title" maxlength="100"
+               value="{{ form['title'] }}" required autofocus>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="6"
+                  maxlength="2000" required>{{ form['description'] }}</textarea>
+      </div>
+      <div class="row g-3 mb-4">
+        <div class="col-sm-6">
+          <label for="priority" class="form-label">Priority</label>
+          <select class="form-select" id="priority" name="priority">
+            {% for p in priorities %}
+              <option value="{{ p }}" {% if p == form['priority'] %}selected{% endif %}>{{ p }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-sm-6">
+          <label for="status" class="form-label">Status</label>
+          <select class="form-select" id="status" name="status">
+            {% for s in statuses %}
+              <option value="{{ s }}" {% if s == form['status'] %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{{ url_for('tickets.detail', ticket_id=ticket['id']) }}" class="btn btn-outline-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
