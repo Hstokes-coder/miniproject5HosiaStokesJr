@@ -1,0 +1,14 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Instance folder holds the SQLite database and local config
+instance/
+
+# OS / editor files
+.DS_Store
+.idea/

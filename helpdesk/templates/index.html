@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+    <h1 class="display-5 fw-bold">Welcome to IT Help Desk</h1>
+    <p class="fs-5 col-md-8">Your support starts here! Submit a ticket and track it until it's resolved.</p>
+    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#howItWorks">
+      How it works
+    </button>
+  </div>
+
+  <!-- Bootstrap modal: hidden until the button above is clicked. -->
+  <div class="modal fade" id="howItWorks" tabindex="-1" aria-labelledby="howItWorksLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="howItWorksLabel">How it works</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ol class="mb-0">
+            <li>Create an account and log in.</li>
+            <li>Submit a ticket describing your problem.</li>
+            <li>Track its status from your dashboard.</li>
+          </ol>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Got it</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

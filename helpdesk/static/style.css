@@ -1,0 +1,4 @@
+/* Custom styles for the IT Help Desk. Bootstrap handles most styling. */
+.navbar-brand {
+  letter-spacing: 0.02em;
+}
