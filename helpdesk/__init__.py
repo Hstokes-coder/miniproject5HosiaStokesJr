@@ -44,6 +44,7 @@ def create_app(test_config=None):
 
     @app.route("/")
     def index():
+        """GET: show the public homepage with the 'How it works' modal."""
         return render_template("index.html")
 
     return app
