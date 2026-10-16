@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% from "tickets/_macros.html" import status_badge, priority_badge %}
+
+{% block title %}My Tickets{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">My Tickets</h1>
+  <a href="{{ url_for('tickets.create') }}" class="btn btn-primary">+ New Ticket</a>
+</div>
+
+{% if tickets %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Status</th>
+          <th scope="col">Submitted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ticket in tickets %}
+          <tr>
+            <td>{{ ticket['id'] }}</td>
+            <td><a href="{{ url_for('tickets.detail', ticket_id=ticket['id']) }}">{{ ticket['title'] }}</a></td>
+            <td>{{ priority_badge(ticket['priority']) }}</td>
+            <td>{{ status_badge(ticket['status']) }}</td>
+            <td class="text-muted small">{{ ticket['created'].strftime('%b %d, %Y') }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <div class="text-center py-5 bg-body-tertiary rounded-3">
+    <p class="lead mb-3">You haven't submitted any tickets yet.</p>
+    <a href="{{ url_for('tickets.create') }}" class="btn btn-primary">Submit your first ticket</a>
+  </div>
+{% endif %}
+{% endblock %}

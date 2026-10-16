@@ -38,6 +38,10 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    # Register the tickets blueprint (list, create, view).
+    from . import tickets
+    app.register_blueprint(tickets.bp)
+
     @app.route("/")
     def index():
         return render_template("index.html")

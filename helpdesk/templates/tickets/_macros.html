@@ -1,0 +1,11 @@
+{# Reusable badge snippets. Import with: {% from "tickets/_macros.html" import ... %} #}
+
+{% macro status_badge(status) -%}
+  {% set colors = {"Open": "primary", "In Progress": "warning text-dark", "Closed": "secondary"} %}
+  <span class="badge bg-{{ colors.get(status, 'light text-dark') }}">{{ status }}</span>
+{%- endmacro %}
+
+{% macro priority_badge(priority) -%}
+  {% set colors = {"Low": "success", "Medium": "info text-dark", "High": "danger"} %}
+  <span class="badge bg-{{ colors.get(priority, 'light text-dark') }}">{{ priority }}</span>
+{%- endmacro %}
