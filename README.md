@@ -54,7 +54,7 @@ miniproject5HosiaStokesJr/
 
 1. **Clone the repository** and move into it:
    ```bash
-   git clone https://github.com/<your-github-username>/miniproject5HosiaStokesJr.git
+   git clone https://github.com/hstokes-coder/miniproject5HosiaStokesJr.git
    cd miniproject5HosiaStokesJr
    ```
 
@@ -161,6 +161,6 @@ The application was tested manually in the browser and with automated checks usi
 
 For Mini Project 5 in my Advanced Programming with Python course, I developed an IT Help Desk Ticket System using Flask, Python, SQLite, HTML, CSS, Bootstrap, and Git. I set up my Python virtual environment, installed Flask, and wrote the initial starter application. With assistance from Claude (Anthropic's AI assistant), I restructured the project to follow the official Flask tutorial and built a website where users can register, log in, create support tickets, view their tickets, update them, and delete them using a Bootstrap confirmation modal. The SQLite database contains two related tables, `user` and `ticket`, connected through a foreign key so that each ticket belongs to the user who created it. Passwords are stored as secure hashes, and users can only view or change their own tickets.
 
-Throughout development, I manually tested registration, login, ticket management, and security restrictions such as blocking other users' tickets. I learned how GET and POST requests work, how Flask routes connect URLs to Python functions, how sessions keep users logged in, and how Git commits track changes. I made six Git commits, exceeding the five required.
+Throughout development, I manually tested registration, login, ticket management, and security restrictions such as blocking other users' tickets. I learned how GET and POST requests work, how Flask routes connect URLs to Python functions, how sessions keep users logged in, and how Git commits track changes. I made eight Git commits, exceeding the five required.
 
 Claude wrote most of the application code and ran automated tests. I configured Git and the environment, generated `requirements.txt`, ran and manually tested each feature, reviewed the changes, debugged issues with Claude's guidance, and made every commit myself.
