@@ -30,6 +30,10 @@ def create_app(test_config=None):
     # Make sure the instance folder exists so SQLite can create the file.
     os.makedirs(app.instance_path, exist_ok=True)
 
+    # Register database helpers and the init-db command.
+    from . import db
+    db.init_app(app)
+
     @app.route("/")
     def index():
         return render_template("index.html")
